@@ -1,12 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from './screens/Home';
+import BillDetails from './screens/BillDetails';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+    <StatusBar style='light'/>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{
+              headerStyle: { backgroundColor: '#72063c' },
+              headerTintColor: 'white',
+        }}>
+          <Stack.Screen 
+            options={{
+              title: 'Hydro Consumption',
+              contentStyle: { backgroundColor:'#fce8f6' },
+            }}
+            component={Home} name="Home">
+          </Stack.Screen>
+          <Stack.Screen 
+            options={{
+              title: 'Billing Details',
+              contentStyle: { backgroundColor:'#fce8f6' },
+            }}
+            component={BillDetails} name="BillDetailsScreen">
+          </Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 
